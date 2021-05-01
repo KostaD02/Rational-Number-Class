@@ -36,6 +36,9 @@ class RationalNumber{
         unsigned int getN(){
             return this->n;
         }
+        double toFLoat(){
+            return 1.0 * this->m / this->n;
+        }
 };
 
 RationalNumber operator +(RationalNumber A,RationalNumber B){
@@ -120,6 +123,64 @@ RationalNumber operator /(RationalNumber A,RationalNumber B){
         solve = (1*3)/(2*1) = 3/2
     */
     return RationalNumber(A.getM()*B.getN(),A.getN()*B.getM());
+}
+
+bool operator ==(RationalNumber A,RationalNumber B){
+    //checking integer and denominator are same
+    if(A.getM()==B.getM() && A.getN() == B.getN())
+        return true;
+    else
+        return false;
+}
+
+bool operator !=(RationalNumber A,RationalNumber B){
+    //according to the overloaded == we can simple check != equation
+    if(A==B)
+        return false;
+    else
+        return true; 
+}
+
+bool operator >(RationalNumber A,RationalNumber B){
+    //according to the > operator we can simple check two number equation
+    if(A.toFLoat()-B.toFLoat()>0)
+        return true;
+    else
+        return false;
+}
+
+bool operator <(RationalNumber A,RationalNumber B){
+    //according to the < operator we can simple check two number equation
+    if(A.toFLoat()-B.toFLoat()<0)
+        return true;
+    else
+        return false;
+}
+
+bool operator >=(RationalNumber A,RationalNumber B){
+    /*  according to the == we can simple check firstly numbers are equal or not
+        then checking first number is more or not 
+        if above two statement wasn't true we are returning false
+    */
+    if(A==B)
+        return true;
+    else if(A>B)
+        return true;
+    else
+        return false;
+}
+
+bool operator <=(RationalNumber A,RationalNumber B){
+    /*  according to the == we can simple check firstly numbers are equal or not
+        then checking second number is more or not 
+        if above two statement wasn't true we are returning false
+    */
+    if(A==B)
+        return true;
+    else if(A<B)
+        return true;
+    else
+        return false;
 }
 
 int main(int argc, char** argv) {
