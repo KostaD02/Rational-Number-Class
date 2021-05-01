@@ -3,6 +3,7 @@
 using namespace std;
 
 unsigned int GCD(unsigned int a,unsigned int b){
+    //GCD function will return GCD of two number
     if(a==0)
         return b;
     if(b==0)
@@ -20,20 +21,20 @@ class RationalNumber{
         unsigned int n; //denominator
     public:
         RationalNumber(int m=0,unsigned int n=1){
-            set(m, n);
+            set(m, n); //wraping it to set function to not spaming in constructor
         }
         void set(int m=0,unsigned int n=1){
-            if(n==0){
-                cout << "Denominator can't be 0" << endl;
-                exit(0);
+            if(n==0){ //checking if denominator isn't equal to 0 , bcz we can't division number on zero
+                cout << "Denominator can't be 0" << endl; //output for user , to know whats error
+                exit(0); //since we can't return in void , we are using exit
             }
-            int gcd = GCD(m,n);
+            int gcd = GCD(m,n); 
             this->n = n / gcd;
             this->m = m / gcd;
         }
-        void Display(){
+        void Display(){ //displaying the number
             if(this->m==0){
-                cout << "0";
+                cout << "0"; 
             }
             else if (this->n == 1){
                 cout << this->m;
@@ -42,20 +43,20 @@ class RationalNumber{
                 cout << this->m << "/" << this->n;
             }
         }
-        int getM(){
-            return this->m;
+        int getM(){ //taking m value from private 
+            return this->m; 
         }
-        unsigned int getN(){
+        unsigned int getN(){ //taking n value from private 
             return this->n;
         }
-        double toFLoat(){
+        double toFLoat(){ //changing number to float
             return 1.0 * this->m / this->n;
         }
-    friend ostream& operator<<(ostream& output,const RationalNumber& Number){
+    friend ostream& operator<<(ostream& output,const RationalNumber& Number){ //operator overload
         output << Number.m << "/" << Number.n;
         return output;
     }
-    friend istream& operator>>(istream& input,RationalNumber& Number){
+    friend istream& operator>>(istream& input,RationalNumber& Number){ //operator overload
         cout << "Input numerator = ";
         input >> Number.m;
         cout << "Input denominator = ";
@@ -64,7 +65,7 @@ class RationalNumber{
     }
 };
 
-RationalNumber operator +(RationalNumber A,RationalNumber B){
+RationalNumber operator +(RationalNumber A,RationalNumber B){ 
     /*
         Option 1 where one of number numerator  is equal to 0
         imagine simple example : 0/2 + 1/3 = 1/3
@@ -221,10 +222,38 @@ int main(int argc, char** argv) {
     cout << "Second number = ";
     B.Display();
     cout << endl;
-    cout << "Some calculate:" << endl;
+    cout << "Some calculate :" << endl;
     cout << A << " + " << B << " = " << A + B << endl;
     cout << A << " - " << B << " = " << A - B << endl;
     cout << A << " * " << B << " = " << A * B << endl;
-    cout << A << " / " << B << " = " << A + B << endl;
+    cout << A << " / " << B << " = " << A / B << endl;
+    cout << "Now compare numbers :" << endl;
+    cout << "Is ";
+    A.Display();
+    cout << " bigger than ";
+    B.Display();
+    cout << " ? ";
+    if(A>B)
+        cout << "Yes" << endl;
+    else
+        cout << "No" << endl;
+    cout << "Is ";
+    A.Display();
+    cout << " less than ";
+    B.Display();
+    cout << " ? ";
+    if(A<B)
+        cout << "Yes" << endl;
+    else
+        cout << "No" << endl;
+    cout << "Is ";
+    A.Display();
+    cout << " equal to ";
+    B.Display();
+    cout <<" ? ";
+    if(A==B)
+        cout << "Yes" << endl;
+    else
+        cout << "No" << endl;
     return 0;
 }
