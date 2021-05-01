@@ -4,7 +4,7 @@ using namespace std;
 
 class RationalNumber{
     private:
-        int m; //integer
+        int m; //numerator 
         unsigned int n; //denominator
     public:
         RationalNumber(int m=0,unsigned int n=1){
@@ -39,11 +39,22 @@ class RationalNumber{
         double toFLoat(){
             return 1.0 * this->m / this->n;
         }
+    friend ostream& operator<<(ostream& output,const RationalNumber& Number){
+        output << Number.m << "/" << Number.n;
+        return output;
+    }
+    friend istream& operator>>(istream& input,RationalNumber& Number){
+        cout << "Input numerator = ";
+        input >> Number.m;
+        cout << "Input denominator = ";
+        input >> Number.n;
+        return input;
+    }
 };
 
 RationalNumber operator +(RationalNumber A,RationalNumber B){
     /*
-        Option 1 where one of number integer is equal to 0
+        Option 1 where one of number numerator  is equal to 0
         imagine simple example : 0/2 + 1/3 = 1/3
         solve = 0 + 1/3 = 1/3
     */
@@ -64,7 +75,7 @@ RationalNumber operator +(RationalNumber A,RationalNumber B){
 
 RationalNumber operator -(RationalNumber A,RationalNumber B){
     /*
-        Option 1 where one of number integer is equal to 0
+        Option 1 where one of number numerator  is equal to 0
         imagine simple example : 0/2 - 1/3 = -1/3
         solve = 0 - 1/3 = -1/3
     */
@@ -85,7 +96,7 @@ RationalNumber operator -(RationalNumber A,RationalNumber B){
 
 RationalNumber operator *(RationalNumber A,RationalNumber B){
     /*
-        Option 1 where one of number integer is equal to 0
+        Option 1 where one of number numerator  is equal to 0
         imagine simple example : 0/2 * 1/3 = 0
         solve = 0 * 1/3 = 0
     */
@@ -106,7 +117,7 @@ RationalNumber operator *(RationalNumber A,RationalNumber B){
 
 RationalNumber operator /(RationalNumber A,RationalNumber B){
     /*
-        Option 1 where one of number integer is equal to 0
+        Option 1 where one of number numerator  is equal to 0
         imagine simple example : 0/2 * 1/3 = 0
         solve = 0 / 1/3 = 0
     */
@@ -126,7 +137,7 @@ RationalNumber operator /(RationalNumber A,RationalNumber B){
 }
 
 bool operator ==(RationalNumber A,RationalNumber B){
-    //checking integer and denominator are same
+    //checking numerator  and denominator are same
     if(A.getM()==B.getM() && A.getN() == B.getN())
         return true;
     else
@@ -184,23 +195,8 @@ bool operator <=(RationalNumber A,RationalNumber B){
 }
 
 int main(int argc, char** argv) {
-    RationalNumber A(1,2);
-    A.Display();
-    cout << endl;
-    RationalNumber B(1, 3);
-    B.Display();
-    cout << endl;
-    RationalNumber C;
-    C = A + B;
-    C.Display();
-    cout << endl;
-    C = A - B;
-    C.Display();
-    cout << endl;
-    C = A * B;
-    C.Display();
-    cout << endl;
-    C = A / B;
-    C.Display();
+    RationalNumber A;
+    cin >> A;
+    cout << A;
     return 0;
 }
