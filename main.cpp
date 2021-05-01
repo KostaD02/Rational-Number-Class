@@ -2,6 +2,18 @@
 
 using namespace std;
 
+unsigned int GCD(unsigned int a,unsigned int b){
+    if(a==0)
+        return b;
+    if(b==0)
+        return a;
+    if(a==b)
+        return a;
+    if(a>b)
+        return GCD(a - b, b);
+    return GCD(a, b - a);
+}
+
 class RationalNumber{
     private:
         int m; //numerator 
@@ -11,13 +23,13 @@ class RationalNumber{
             set(m, n);
         }
         void set(int m=0,unsigned int n=1){
-            this->m = m;
-            if(n!=0){
-                this->n = n;
-            }else{
+            if(n==0){
                 cout << "Denominator can't be 0" << endl;
                 exit(0);
             }
+            int gcd = GCD(m,n);
+            this->n = n / gcd;
+            this->m = m / gcd;
         }
         void Display(){
             if(this->m==0){
@@ -195,8 +207,24 @@ bool operator <=(RationalNumber A,RationalNumber B){
 }
 
 int main(int argc, char** argv) {
-    RationalNumber A;
-    cin >> A;
-    cout << A;
+    int numerator = 0;cout << "Input first number numerator = ";cin >> numerator;
+    unsigned int denominator = 1;cout << "Input first number denominator = ";cin >> denominator;
+    RationalNumber A(numerator, denominator);
+    numerator = 0;
+    denominator = 1;
+    cout << "Input second number numerator = ";cin >> numerator;
+    cout << "Input second number denominator = ";cin >> denominator;
+    RationalNumber B(numerator, denominator);
+    cout << "First number = ";
+    A.Display();
+    cout << endl;
+    cout << "Second number = ";
+    B.Display();
+    cout << endl;
+    cout << "Some calculate:" << endl;
+    cout << A << " + " << B << " = " << A + B << endl;
+    cout << A << " - " << B << " = " << A - B << endl;
+    cout << A << " * " << B << " = " << A * B << endl;
+    cout << A << " / " << B << " = " << A + B << endl;
     return 0;
 }
