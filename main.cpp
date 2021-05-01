@@ -59,18 +59,40 @@ RationalNumber operator +(RationalNumber A,RationalNumber B){
     return RationalNumber(A.getM() * B.getN() + A.getN() * B.getM(), A.getN() * B.getN());
 }
 
+RationalNumber operator -(RationalNumber A,RationalNumber B){
+    /*
+        Option 1 where one of number integer is equal to 0
+        imagine simple example : 0/2 - 1/3 = -1/3
+        solve = 0 - 1/3 = -1/3
+    */
+    if(A.getM()==0 || B.getM()==0){
+        if(A.getM()==0){
+            return RationalNumber(-B.getM(), B.getN());
+        }else{
+            return RationalNumber(-A.getM(), A.getN());
+        }
+    }
+    /*  
+        Option 2 where number isn't equal to zero
+        imagine simple example : 1/2 - 1/3 = 1/6 
+        solve = (1*3-1*2)/(2*3) = 1/6
+    */
+    return RationalNumber(A.getM() * B.getN() - A.getN() * B.getM(), A.getN() * B.getN());
+}
 
 
 int main(int argc, char** argv) {
-    RationalNumber A(1,1);
+    RationalNumber A(1,2);
     A.Display();
     cout << endl;
-    RationalNumber B(0, 3);
+    RationalNumber B(3, 3);
     B.Display();
     cout << endl;
     RationalNumber C;
     C = A + B;
     C.Display();
-
+    cout << endl;
+    C = A - B;
+    C.Display();
     return 0;
 }
