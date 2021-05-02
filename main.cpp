@@ -1,5 +1,7 @@
 #include <iostream>
-
+#include <string>
+#include <sstream>
+#include <cmath>
 using namespace std;
 
 unsigned int GCD(unsigned int a,unsigned int b){
@@ -207,6 +209,32 @@ bool operator <=(RationalNumber A,RationalNumber B){
         return false;
 }
 
+RationalNumber floatToRational(double number){
+    ostringstream NumberString;
+    NumberString << number;
+    unsigned int pointPlace = 0;
+    int m=0;
+    unsigned int n=1;
+    string Number = NumberString.str();
+    for (int i = 1; i <= Number.length();i++){
+        if(Number[i]==char(46))
+            pointPlace = i + 1;
+    }
+    if(pointPlace == 0){
+        return RationalNumber(number, 1);
+    }
+    unsigned int zeroNumbers = Number.length() - pointPlace;
+    // cout << "Number = " << Number << endl;
+    // cout << "Length = " << Number.length() << endl;
+    // cout << "PointPlace = " << pointPlace << endl;
+    // cout << "Zero = " << zeroNumbers << endl;
+    Number.erase(Number.begin()+pointPlace-1);
+    // cout << "String = "<< Number << endl;
+    int numerator = stod(Number);
+    int denominator = pow(10, zeroNumbers);
+    return RationalNumber(numerator, denominator);
+}
+
 int main(int argc, char** argv) {
     int numerator = 0;cout << "Input first number numerator = ";cin >> numerator;
     unsigned int denominator = 1;cout << "Input first number denominator = ";cin >> denominator;
@@ -255,5 +283,10 @@ int main(int argc, char** argv) {
         cout << "Yes" << endl;
     else
         cout << "No" << endl;
+    double Number = 0;cout << "Input double number : ";cin >> Number;
+    RationalNumber FloatToRational = floatToRational(Number);
+    cout << "Rational Number : ";
+    FloatToRational.Display();
+    cout << endl;
     return 0;
 }

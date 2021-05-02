@@ -21,4 +21,15 @@ Is 2 bigger than 1/3 ? Yes <br>
 Is 2 less than 1/3 ? No <br>
 is 2 equal to 1/3 ? No <br>
 
+Changing double to rational number :
+
+Inputed number : 78.145
+Rational number : 15629/200
+
+Inputed number : 25.175
+Rational number : 1007/40
+
+Inputed number : 256.17
+Rational number : 25617/100
+
 # Made by : Konstantine Datunishvili
