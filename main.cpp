@@ -210,28 +210,26 @@ bool operator <=(RationalNumber A,RationalNumber B){
 }
 
 RationalNumber floatToRational(double number){
-    ostringstream NumberString;
-    NumberString << number;
-    unsigned int pointPlace = 0;
-    int m=0;
-    unsigned int n=1;
-    string Number = NumberString.str();
+    ostringstream NumberString; 
+    NumberString << number; 
+    unsigned int pointPlace = 0; //start pointplace 0 index
+    string Number = NumberString.str(); //changing number to string
     for (int i = 1; i <= Number.length();i++){
         if(Number[i]==char(46))
-            pointPlace = i + 1;
+            pointPlace = i + 1; //finding point place
     }
-    if(pointPlace == 0){
+    if(pointPlace == 0){ //if number doesn't have zero we are returning numerator=number and denominator = 1
         return RationalNumber(number, 1);
     }
-    unsigned int zeroNumbers = Number.length() - pointPlace;
-    // cout << "Number = " << Number << endl;
-    // cout << "Length = " << Number.length() << endl;
-    // cout << "PointPlace = " << pointPlace << endl;
-    // cout << "Zero = " << zeroNumbers << endl;
-    Number.erase(Number.begin()+pointPlace-1);
-    // cout << "String = "<< Number << endl;
-    int numerator = stod(Number);
-    int denominator = pow(10, zeroNumbers);
+    unsigned int zeroNumbers = Number.length() - pointPlace; //calculating how many zero do we need in denominator
+    // cout << "Number = " << Number << endl; //testing
+    // cout << "Length = " << Number.length() << endl; //testing
+    // cout << "PointPlace = " << pointPlace << endl; //testing
+    // cout << "Zero = " << zeroNumbers << endl; //testing 
+    Number.erase(Number.begin()+pointPlace-1); //taking zero char from string 
+    // cout << "String = "<< Number << endl; //testing 
+    int numerator = stod(Number); //giving numerator value of string without zero character in double
+    int denominator = pow(10, zeroNumbers); //giving denominator value
     return RationalNumber(numerator, denominator);
 }
 
