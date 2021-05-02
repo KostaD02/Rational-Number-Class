@@ -2,6 +2,7 @@
 
 Simple rational class with operators. <br>
 In this code u can you class aswell operators. <br>
+Also you can change double number to rational number. <br>
 
 Input first number numerator = 4 <br>
 Input first number denominator = 2 <br>
